@@ -12,7 +12,9 @@ KPIs importantes como taxa de conversão, taxa de abandono de carrinho de compra
 #### 2. Motivação da Proposta
 #### 3. Execução da pipeline
 #### 4. Implementação
-#### 5. Referências
+#### 5. Proposta de evolução
+#### 6. Referências
+#### 7. Eu
 
 ### 1. Arquitetura Proposta
 
@@ -180,7 +182,11 @@ where page_type = 'thankyou') thankyou
 ##### Dashboard principal
 ![alt text](datastudio2.png "Imagem datastudio")
 
-### 5 Referências
+### 5 Proposta de Evolução DataStudio
+##### O mundo perfeito é evoluir para o seguinte workflow, caso queira contribuir de alguma forma, commits são bem vindos.
+![alt text](diagram-dataflow.png "Imagem datastudio")
+
+### 6 Referências
 
 #### gcp-batch-ingestion-pipeline-python
 https://github.com/servian/gcp-batch-ingestion-pipeline-python
@@ -196,3 +202,8 @@ https://github.com/GoogleCloudPlatform/nodejs-docs-samples/tree/058f03387f7acbec
 
 #### Orchestrating jobs with Apache Airflow/Cloud Composer
 https://hcoelho.com/blog/63/Orchestrating_jobs_with_Apache_Airflow_Cloud_Composer
+
+### 7. Eu
+#### Sou Samuel Balbino, apaixonada por desenvolvimento de softwares e manipulação de dados. Caso queira ser meu amigo virtual, tenha dúvidas, questionamentos ou precise alguma consultoria só me procurar nas rede sociais abaixo:
+
+https://linktr.ee/samueljboficial
