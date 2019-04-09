@@ -127,48 +127,48 @@ https://beam.apache.org/documentation/io/built-in/google-bigquery/
 ##### Exemplo de execução de pipeline terminal shell do google cloud:
 
 ```python
-python storage-to-dataflow-to-bigquery.py --input gs://b2w-americanas-teste-bucket-navigation/dados_navegacionais* --output b2w-americanas-teste:dataNavigationDataSet.RAW_DATA_NAVIGATION --runner DataflowRunner --project b2w-americanas-teste --job_name b2w-americanas-raw-nav-data-0001 --temp_location gs://b2w-americanas-teste-bucket-navigation/tmp/
+python storage-to-dataflow-to-bigquery.py --input gs://seu-projeto-nome-no-google-bucket-navigation/dados_navegacionais* --output seu-projeto-nome-no-google:dataNavigationDataSet.RAW_DATA_NAVIGATION --runner DataflowRunner --project seu-projeto-nome-no-google --job_name job-name-001 --temp_location gs://seu-projeto-nome-no-google-bucket-navigation/tmp/
 ```
 
 #### 4.2 BigQuery
 
 ![alt text](bigquery1.png "Imagem bigquery")
 
-Foi criada seguinte view b2w-americanas-teste:dataNavigationDataSet.SalesKPI, com os indicadores mais relevantes:
+Foi criada seguinte view seu-projeto-nome-no-google:dataNavigationDataSet.SalesKPI, com os indicadores mais relevantes:
 ```sql
     SELECT  'Abandono de Carrinho de compras' as Description, basket.losing as q1, thankyou.buy as q2, 100-ROUND((thankyou.buy / basket.losing)*100, 2) as rate  FROM
-(SELECT count(distinct visit_id) as losing FROM `b2w-americanas-teste.dataNavigationDataSet.RAW_DATA_NAVIGATION` 
+(SELECT count(distinct visit_id) as losing FROM `seu-projeto-nome-no-google.dataNavigationDataSet.RAW_DATA_NAVIGATION` 
 where page_type = 'basket') basket
 CROSS JOIN
-(SELECT count(distinct visit_id) as buy FROM `b2w-americanas-teste.dataNavigationDataSet.RAW_DATA_NAVIGATION` 
+(SELECT count(distinct visit_id) as buy FROM `seu-projeto-nome-no-google.dataNavigationDataSet.RAW_DATA_NAVIGATION` 
 where page_type = 'thankyou') thankyou
 union all
 SELECT  'Taxa de conversão vindo da home', home.visit, thankyou.buy, ROUND((thankyou.buy / home.visit)*100, 2) as conversion_rate_home  FROM
-(SELECT count(distinct visit_id) as visit FROM `b2w-americanas-teste.dataNavigationDataSet.RAW_DATA_NAVIGATION` 
+(SELECT count(distinct visit_id) as visit FROM `seu-projeto-nome-no-google.dataNavigationDataSet.RAW_DATA_NAVIGATION` 
 where page_type = 'home') home
 CROSS JOIN
-(SELECT count(distinct visit_id) as buy FROM `b2w-americanas-teste.dataNavigationDataSet.RAW_DATA_NAVIGATION` 
+(SELECT count(distinct visit_id) as buy FROM `seu-projeto-nome-no-google.dataNavigationDataSet.RAW_DATA_NAVIGATION` 
 where page_type = 'thankyou') thankyou
 union all
 SELECT  'Taxa de conversão vindo da Busca', home.visit, thankyou.buy, ROUND((thankyou.buy / home.visit)*100, 2) as conversion_rate_home  FROM
-(SELECT count(distinct visit_id) as visit FROM `b2w-americanas-teste.dataNavigationDataSet.RAW_DATA_NAVIGATION` 
+(SELECT count(distinct visit_id) as visit FROM `seu-projeto-nome-no-google.dataNavigationDataSet.RAW_DATA_NAVIGATION` 
 where page_type = 'search') home
 CROSS JOIN
-(SELECT count(distinct visit_id) as buy FROM `b2w-americanas-teste.dataNavigationDataSet.RAW_DATA_NAVIGATION` 
+(SELECT count(distinct visit_id) as buy FROM `seu-projeto-nome-no-google.dataNavigationDataSet.RAW_DATA_NAVIGATION` 
 where page_type = 'thankyou') thankyou
 union all
 SELECT  'Taxa de conversão vindo do Produto', home.visit, thankyou.buy, ROUND((thankyou.buy / home.visit)*100, 2) as conversion_rate_home  FROM
-(SELECT count(distinct visit_id) as visit FROM `b2w-americanas-teste.dataNavigationDataSet.RAW_DATA_NAVIGATION` 
+(SELECT count(distinct visit_id) as visit FROM `seu-projeto-nome-no-google.dataNavigationDataSet.RAW_DATA_NAVIGATION` 
 where page_type = 'product') home
 CROSS JOIN
-(SELECT count(distinct visit_id) as buy FROM `b2w-americanas-teste.dataNavigationDataSet.RAW_DATA_NAVIGATION` 
+(SELECT count(distinct visit_id) as buy FROM `seu-projeto-nome-no-google.dataNavigationDataSet.RAW_DATA_NAVIGATION` 
 where page_type = 'thankyou') thankyou
 union all
 SELECT  'Não pagamento - Desistencia', home.visit, thankyou.buy, 100-ROUND((thankyou.buy / home.visit)*100, 2) as conversion_rate_home  FROM
-(SELECT count(distinct visit_id) as visit FROM `b2w-americanas-teste.dataNavigationDataSet.RAW_DATA_NAVIGATION` 
+(SELECT count(distinct visit_id) as visit FROM `seu-projeto-nome-no-google.dataNavigationDataSet.RAW_DATA_NAVIGATION` 
 where page_type = 'payment') home
 CROSS JOIN
-(SELECT count(distinct visit_id) as buy FROM `b2w-americanas-teste.dataNavigationDataSet.RAW_DATA_NAVIGATION` 
+(SELECT count(distinct visit_id) as buy FROM `seu-projeto-nome-no-google.dataNavigationDataSet.RAW_DATA_NAVIGATION` 
 where page_type = 'thankyou') thankyou
 
 
