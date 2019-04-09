@@ -205,6 +205,6 @@ https://hcoelho.com/blog/63/Orchestrating_jobs_with_Apache_Airflow_Cloud_Compose
 
 ### 7. Quem sou eu...
 #### Sou Samuel Balbino, apaixonado por desenvolvimento de softwares e manipulação de dados. 
-#### Caso queira ser meu amigo virtual, tenha dúvidas, questionamentos ou precise alguma consultoria só me procurar nas rede sociais abaixo:
+#### Caso queira ser meu amigo virtual, tenha dúvidas, questionamentos ou precise alguma consultoria, é só me procurar nas rede sociais abaixo:
 
 https://linktr.ee/samueljboficial
