@@ -14,7 +14,7 @@ KPIs importantes como taxa de conversão, taxa de abandono de carrinho de compra
 #### 4. Implementação
 #### 5. Proposta de evolução
 #### 6. Referências
-#### 7. Eu
+#### 7. Quem sou eu?
 
 ### 1. Arquitetura Proposta
 
@@ -203,7 +203,8 @@ https://github.com/GoogleCloudPlatform/nodejs-docs-samples/tree/058f03387f7acbec
 #### Orchestrating jobs with Apache Airflow/Cloud Composer
 https://hcoelho.com/blog/63/Orchestrating_jobs_with_Apache_Airflow_Cloud_Composer
 
-### 7. Eu
-#### Sou Samuel Balbino, apaixonada por desenvolvimento de softwares e manipulação de dados. Caso queira ser meu amigo virtual, tenha dúvidas, questionamentos ou precise alguma consultoria só me procurar nas rede sociais abaixo:
+### 7. Quem sou eu...
+#### Sou Samuel Balbino, apaixonado por desenvolvimento de softwares e manipulação de dados. 
+#### Caso queira ser meu amigo virtual, tenha dúvidas, questionamentos ou precise alguma consultoria só me procurar nas rede sociais abaixo:
 
 https://linktr.ee/samueljboficial
