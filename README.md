@@ -1,6 +1,6 @@
 # Solução auto escalável de importação de CSV e geração indicadores utilizando todo ecosistema do Google Cloud
 ### Repositório criado com objetivo de detalhar solução, desde as motivações da arquitetura até a implementação. 
-#### Motivação: Cliente possui site que a cada 1 minuto gera um arquivo de log no formato CSV de 400 MB. 
+#### Motivação: Cliente possui site que a cada 1 minuto gera um arquivos gigantes de log no formato CSV.
 Esse arquivo possui log eventos de todo ciclo de navegação de cada cliente desde o acesso inicial ao site até o pagamento. 
 #### Desafio: Desenhar solução escalável que leia esses arquivos para extrair informações relevantes para o cliente, como: 
 KPIs importantes como taxa de conversão, taxa de abandono de carrinho de compras entre outros. 
@@ -9,7 +9,7 @@ KPIs importantes como taxa de conversão, taxa de abandono de carrinho de compra
 ### O escopo desse documento se divide nos seguintes tópicos.
 
 #### 1. Arquitetura Proposta
-#### 2. Motivação da Proposta
+#### 2. Motivação
 #### 3. Execução da pipeline
 #### 4. Implementação
 #### 5. Proposta de evolução
@@ -46,7 +46,7 @@ A arquitetura tem o seguinte fluxo principal:
 + [DataStudio](https://datastudio.google.com/), nossa ferramenta para criação de relatórios. 
 > Desbloqueie o poder de seus dados com painéis interativos e relatórios bonitos que inspiram decisões de negócios mais inteligentes.
 
-### 2 Motivação da Proposta
+### 2 Motivação
 Para essa essa arquitetura priorizamos não obrigar instalar nenhuma biblioteca ou ferramenta localmente, tudo será instalado na núvem.  
 Cobre requisitos do cliente e outros como escalabilidade sob demanda, modelo de programação simplificado e opensource, controle de custo, gerenciamento automático de recursos, que conforme a google diz:
 > "Recursos praticamente ilimitados".
