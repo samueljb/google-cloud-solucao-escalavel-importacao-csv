@@ -1,4 +1,4 @@
-# Solução auto escalável de importação de CSVs gigantes para geração indicadores utilizando todo ecosistema do Google Cloud
+# Solução auto escalável de importação e análise de CSVs gigantes para geração indicadores utilizando todo ecosistema do Google Cloud
 ### Repositório criado com objetivo de detalhar solução, desde as motivações da arquitetura até a implementação. 
 #### Motivação: Cliente possui site que a cada 1 minuto gera um arquivos gigantes de log no formato CSV.
 Esse arquivo possui log eventos de todo ciclo de navegação de cada cliente desde o acesso inicial ao site até o pagamento. 
