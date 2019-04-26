@@ -95,10 +95,6 @@ gsutil cp -p gs://seu-projeto-nome-no-google-bucket-navi-temp/dados_navegacionai
 
 ![alt text](dataflow3.png "Imagem Dataflow3")
 
-##### Exemplo com csv que deve ser importado no bucket do seu google storage:
-
-> [dados_navigacionais_100.csv](dados_navigacionais_100.csv)
-
 ##### Exemplo arquivo python com a implementação do JOB para rodar no Google Dataflow:
 
 > [storage-to-dataflow-to-bigquery.py](storage-to-dataflow-to-bigquery.py)
@@ -107,13 +103,13 @@ Com os seguintes pontos importantes, para customização do script:
 
 Linha 121: A separação dos campos no CSV e os tipos de cada um, para criação da tabela do banco.
 ```python
-schema='load_timestamp:STRING,ip:STRING,visit_id:STRING,device_type:STRING,url_location:STRING,page_type:STRING,search_query:STRING,product_id:STRING,site_department_id:STRING,product_unit_price:STRING,freight_delivery_time:STRING,freight_value:STRING,cart_qty:STRING,cart_total_value:STRING',
+schema='fieldName1:STRING,fieldName2:STRING',
 ```
 Os tipos são os mesmos do SCHEMA das tabelas do BigQuery.
 
 Linha 38: Pega as linhas do CSV e transforma no formato entendível pelo BigQuery, informando a ordem dos campos no CSV.
 ```python
-    row = dict( zip(('load_timestamp', 'ip', 'visit_id', 'device_type', 'url_location', 'page_type', 'search_query', 'product_id', 'site_department_id', 'product_unit_price', 'freight_delivery_time', 'freight_value', 'cart_qty', 'cart_total_value'),
+row = dict( zip(('fieldName1', 'fieldName2'),
                 values))
 ```
 
