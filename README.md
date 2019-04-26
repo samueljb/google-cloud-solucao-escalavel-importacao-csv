@@ -1,6 +1,6 @@
-# Solução auto escalável de importação e análise de CSVs gigantes para geração indicadores utilizando todo ecosistema do Google Cloud
+# Solução auto escalável de importação e análise de arquivos gigantes para geração indicadores utilizando todo ecosistema do Google Cloud
 ### Repositório criado com objetivo de detalhar solução, desde as motivações da arquitetura até a implementação. 
-#### Motivação: Cliente possui site que a cada 1 minuto gera um arquivos gigantes de log no formato CSV.
+#### Motivação: Cliente possui site que a cada 1 minuto gera um arquivos gigantes de 1GB
 Esse arquivo possui log eventos de todo ciclo de navegação de cada cliente desde o acesso inicial ao site até o pagamento. 
 #### Desafio: Desenhar solução escalável que leia esses arquivos para extrair informações relevantes para o cliente, como: 
 KPIs importantes como taxa de conversão, taxa de abandono de carrinho de compras entre outros. 
@@ -28,13 +28,13 @@ A arquitetura tem o seguinte fluxo principal:
 
 1. A função [index.js](index.js) no [Google Cloud Functions](https://cloud.google.com/functions/features/?hl=pt-br) fica monitorando o bucket seu-projeto-nome-no-google a procura por novos arquivos adicionados no [Google Storage](https://cloud.google.com/storage/?hl=pt-Br)
 2. Essa função tem uma trigger que é informada quando um novo arquivo é adicionado no bucket, logo, acionando o orquestrador [simple_load_dag.py](simple_load_dag.py) no [Google Composer](https://cloud.google.com/composer/?hl=pt-br).  
-3. [Google Composer](https://cloud.google.com/composer/?hl=pt-br) executa o script python [storage-to-dataflow-to-bigquery.py](storage-to-dataflow-to-bigquery.py) no [Google DataFlow](https://cloud.google.com/dataflow/?hl=pt-br), que é a nossa pipeline,  que pega os arquivos CSVs adicionados no bucket transforma no formato conhecido e adiciona na tabela do [BigQuery](https://cloud.google.com/bigquery/?hl=pt-br).
-4. Inserindo cada linha e campo do CSV na tabela seu-projeto-nome-no-google:dataNavigationDataSet.RAW_DATA_NAVIGATION do [BigQuery](https://cloud.google.com/bigquery/?hl=pt-br), dando tudo certo, o [Google Composer](https://cloud.google.com/composer/?hl=pt-br), move o CSV para o bucket seu-projeto-nome-no-google-bucket-navi-out.   
+3. [Google Composer](https://cloud.google.com/composer/?hl=pt-br) executa o script python [storage-to-dataflow-to-bigquery.py](storage-to-dataflow-to-bigquery.py) no [Google DataFlow](https://cloud.google.com/dataflow/?hl=pt-br), que é a nossa pipeline,  que pega os arquivos adicionados no bucket transforma no formato conhecido e adiciona na tabela do [BigQuery](https://cloud.google.com/bigquery/?hl=pt-br).
+4. Inserindo cada linha na tabela seu-projeto-nome-no-google:dataNavigationDataSet.RAW_DATA_NAVIGATION do [BigQuery](https://cloud.google.com/bigquery/?hl=pt-br), dando tudo certo, o [Google Composer](https://cloud.google.com/composer/?hl=pt-br), move o CSV para o bucket seu-projeto-nome-no-google-bucket-navi-out.   
 5. A view [SalesKPI.sql](SalesKPI.sql) criada [BigQuery](https://cloud.google.com/bigquery/?hl=pt-br) possui indicadores relevantes para o projeto.
 6. Essa view é acessada pelo Google [DataStudio](https://datastudio.google.com/) gerando [relatório](datastudio2.png) e os [indicadores](datastudio.png).
 
 #### 1.3 Breve descrição de cada step na sua ordem de chamada, com seu devido google marketing.
-+ [Google Storage](https://cloud.google.com/storage/?hl=pt-Br), nosso storage aonde colocaremos nossos arquivos CSV para serem processados.
++ [Google Storage](https://cloud.google.com/storage/?hl=pt-Br), nosso storage aonde colocaremos nossos arquivos para serem processados.
 > Armazenamento unificado de objetos para desenvolvedores e empresas
 + [Google Cloud Functions](https://cloud.google.com/functions/features/?hl=pt-br), nossa trigger que avisa quando um novo arquivo for adicinado no bucket. 
 > A maneira mais fácil de executar e escalonar o código na nuvem
@@ -65,13 +65,13 @@ Utilizei aqui para simplificar o nosso exemplo, o customização dos relatórios
 
 ### 3. Execução da pipeline
 
-Siga os passos abaixo aonde iremos simular toda execução da pipeline inserindo um arquivo no bucket seu-projeto-nome-no-google, visualizando desde a adição do CSV no bucket até a atualização da view no BigQuery com os indicadores.
+Siga os passos abaixo aonde iremos simular toda execução da pipeline inserindo um arquivo no bucket seu-projeto-nome-no-google, visualizando desde a adição do arquivo no bucket até a atualização da view no BigQuery com os indicadores.
 
 Acesse os links abaixo utilizando o usuário e senha fornecido por email.
 
 3.1 Acesse o [cloud terminal shell](https://console.cloud.google.com/cloudshell/editor?shellonly=true&fromcloudshell=true).
 
-3.2. Execute o seguinte comando para copiar um CSV da pasta do bucket temp para a pasta que esta sendo monitorada pelo Cloud Functions:
+3.2. Execute o seguinte comando para copiar o arquivo da pasta do bucket temp para a pasta que esta sendo monitorada pelo Cloud Functions:
 ```console
 gsutil cp -p gs://seu-projeto-nome-no-google-bucket-navi-temp/dados_navegacionais_p1.csv gs://"seu-projeto-nome-no-google/dados_navegacionais_p1.csv"
 
